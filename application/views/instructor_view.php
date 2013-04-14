@@ -115,7 +115,7 @@
 						<li><a class="ajax-link" href=""><i class="icon-book"></i><span class="hidden-tablet"> Manage Modules</span></a></li>
 						<li><a class="ajax-link" href=""><i class="icon-eye-open"></i><span class="hidden-tablet"> Classroom Presenter</span></a></li>
 						<li class="nav-header hidden-tablet">Manage Examinations</li>
-						<li><a class="ajax-link" href=""><i class="icon-book"></i><span class="hidden-tablet"> Generate Examination</span></a></li>
+						<li><a class="ajax-link" href=""><i class="icon-pencil"></i><span class="hidden-tablet"> Generate Examination</span></a></li>
 						<li><a class="ajax-link" href=""><i class="icon-eye-open"></i><span class="hidden-tablet"> Activate Test</span></a></li>
 						<li><a class="ajax-link" href=""><i class="icon-book"></i><span class="hidden-tablet"> Item Analysis</span></a></li>
 						<li class="nav-header hidden-tablet">Trainee Performance</li>
