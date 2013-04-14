@@ -7,5 +7,6 @@ class Modules extends CI_Controller {
 	}
 
 	function index() {
+		$this->load->view('modules_view');
 	}
 }

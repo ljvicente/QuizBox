@@ -7,5 +7,6 @@ class Presenter extends CI_Controller {
 	}
 
 	function index() {
+		$this->load->view('presenter_view');
 	}
 }

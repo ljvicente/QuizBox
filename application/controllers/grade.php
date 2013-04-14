@@ -7,5 +7,6 @@ class Grade extends CI_Controller {
 	}
 
 	function index() {
+		$this->load->view('grade_view');
 	}
 }
