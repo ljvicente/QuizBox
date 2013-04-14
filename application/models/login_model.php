@@ -26,6 +26,8 @@ class Login_model extends CI_Model{
                     'id' => $row->id,
                     'username' => $row->username,
                     'password' => $row->password,
+                    'displayname' => $row->displayname,
+                    'email' => $row->email,
                     'permission' => $row->permission,
                     'is_logged_in' => true
                     );

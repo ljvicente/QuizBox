@@ -13,7 +13,7 @@
 		http://twitter.com/halalit_usman
 	-->
 	<meta charset="utf-8">
-	<title>AMI Training Center</title>
+	<title>AMI Training Center - Manage Profile</title>
 
 
 	<!-- The styles -->
@@ -104,7 +104,7 @@
 					<ul class="nav nav-tabs nav-stacked main-menu">
 						<li class="nav-header hidden-tablet">Main</li>
 						<li><a class="ajax-link" href="<?php echo base_url();?>index.php/dashboard"><i class="icon-home"></i><span class="hidden-tablet"> Dashboard</span></a></li>
-						<li><a class="ajax-link" href="<?php echo base_url();?>index.php/profile"><i class="icon-cog"></i><span class="hidden-tablet"> Manage Profile</span></a></li>
+						<li><a class="ajax-link" href=""><i class="icon-cog"></i><span class="hidden-tablet"> Manage Profile</span></a></li>
 						
 					</ul>
 				</div><!--/.well -->
@@ -150,150 +150,96 @@
 			<div>
 				<ul class="breadcrumb">
 					<li>
-						<a href="#">Home</a> <span class="divider">/</span>
+						<a href="<?php echo base_url();?>index.php/dashboard">Home</a> <span class="divider">/</span>
 					</li>
 					<li>
-						<a href="#">Dashboard</a>
+						<a href="<?php echo base_url();?>index.php/profile">Manage Profile</a>
 					</li>
 				</ul>
-				<div class="alert alert-warning">You are logged in an Instructor Account</div>
-			</div>
-			<div class="sortable row-fluid">
-				<a data-rel="tooltip" title="6 absent for today" class="well span3 top-block" href="#">
-					<span class="icon32 icon-red icon-check"></span>
-					<div>Attendance Checker</div>
-					<div></div>
-					<span class="notification">6</span>
-				</a>
-
-				<a data-rel="tooltip" title="Add, Edit or Delete Exam or Exam Items" class="well span3 top-block" href="#">
-					<span class="icon32 icon-orange icon-briefcase"></span>
-					<div>Manage Examinations</div>
-					<div></div>
-					<!--<span class="notification green">4</span>-->
-				</a>
-
-				<a data-rel="tooltip" title="Passing rate of the latest batch is 98%" class="well span3 top-block" href="#">
-					<span class="icon32 icon-green icon-star-on"></span>
-					<div>Trainee Performance</div>
-					<div></div>
-					<span class="notification yellow">98%</span>
-				</a>
 				
-				<a data-rel="tooltip" title="Print Training Reports" class="well span3 top-block" href="#">
-					<span class="icon32 icon-blue icon-document"></span>
-					<div>Training Reports</div>
-					<div></div>
-					<!--<span class="notification red">12</span>-->
-				</a>
 			</div>
+			
 			
 			<div class="row-fluid">
 				<div class="box span12">
 					<div class="box-header well">
-						<h2><i class="icon-info-sign"></i> Introduction</h2>
+						<h2><i class="icon-cog"></i> Edit Your Profile</h2>
 						<div class="box-icon">
-							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
-							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
-							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
+							<!--<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>-->
 						</div>
 					</div>
-					<div class="box-content"  style="text-align:center">
-						<h1>Welcome <?php echo $this->session->userdata('username');?>!</h1>
-						<p>In a Trainer Account, you are able to Manage training modules which of composed of the AMI and Client Company's Modules. You can create examinations, manage it and assess the item difficulty. You can view your students' detailed performance and see how effective teacher you are!</p>
-						
-						<p class="center">
-							<a href="" class="btn btn-large btn-primary"><i class="icon-info-sign icon-white"></i> Read Help</a> 
-							<a href="" class="btn btn-large"><i class="icon-download-alt"></i> Download Manual</a>
-						</p>
+					<div class="box-content">
+						<div class="span3">
+							<ul class="thumbnails">
+
+								<li id="image-1" class="thumbnail">
+								    <a style="background:url(https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc1/c48.48.600.600/s160x160/487813_4572432036520_1003867166_n.jpg)" title="" href="http://sphotos-d.ak.fbcdn.net/hphotos-ak-snc6/224997_1057442408004_94515_n.jpg">
+								      <img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc1/c48.48.600.600/s160x160/487813_4572432036520_1003867166_n.jpg" alt="">
+								    </a>
+								 </li>
+
+								 <li>
+								 	<div class="control-group">
+										<label class="control-label">Change Profile Picture</label>
+										<div class="controls">
+										  <input type="file">
+										</div>
+							  		</div>
+
+								 </li>
+							 </ul>
+							 
+						</div>
+						<div class="span9">
+							
+							<table class="table">
+								<tr>
+									<td><h3>Change Display Name</h3></td>
+									<td>&nbsp;</td>
+								</tr>
+								<tr>
+									<td>Display Name: </td>
+									<td><input type="text" id="displayname" name="displayname" 
+										value="<?php echo $this->session->userdata('displayname');?>"></td>
+								</tr>
+								<tr>
+									<td>Email Address: </td>
+									<td><input type="text" id="email" name="email"
+										value="<?php echo $this->session->userdata('email');?>"></td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+									<td><a class="btn btn-info">Change Display Name</a></td>
+								</tr>
+								<tr>
+									<td><h3>Change Password</h3></td>
+									<td>&nbsp;</td>
+								</tr>	
+								<tr>
+									<td>Old Password: </td>
+									<td><input type="password" id="oldpassword" name="oldpassword" 
+										value="<?php echo $this->session->userdata('password');?>"></td>
+								</tr>
+								<tr>
+									<td>New Password: </td>
+									<td><input type="text" id="newpassword" name="newpassword"></td>
+								</tr>
+								<tr>
+									<td>Confirm Password: </td>
+									<td><input type="text" id="confirmpassword" name="confirmpassword"></td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+									<td><a class="btn btn-primary">Change Password</a></td>
+								</tr>	
+							</table>
+						</div>
+											
 						<div class="clearfix"></div>
 					</div>
 				</div>
 			</div>
-			<!-- News -->	
-			<div class="row-fluid sortable">
-				<div class="box span8">
-					<div class="box-header well">
-						<h2><i class="icon-th"></i> AMI Board</h2>
-						<div class="box-icon">
-							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
-							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
-							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
-						</div>
-					</div>
-					<div class="box-content">
-						<ul class="nav nav-tabs" id="myTab">
-							<li class="active"><a href="#info">News</a></li>
-							<li><a href="#custom">Events</a></li>
-							<li><a href="#messages">Messages</a></li>
-						</ul>
-						 
-						<div id="myTabContent" class="tab-content">
-							<div class="tab-pane active" id="info">
-								<h3>SAD Defense is Posponed! <small>3/13/2013</small></h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales at. Nulla tellus elit, varius non commodo eget, mattis vel eros. In sed ornare nulla. Donec consectetur, velit a pharetra ultricies, diam lorem lacinia risus, ac commodo orci erat eu massa. Sed sit amet nulla ipsum. Donec felis mauris, vulputate sed tempor at, aliquam a ligula. Pellentesque non pulvinar nisi.</p>
-							</div>
-							<div class="tab-pane" id="custom">
-								<h3>Events <small></small></h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor.</p>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales at. Nulla tellus elit, varius non commodo eget, mattis vel eros. In sed ornare nulla. Donec consectetur, velit a pharetra ultricies, diam lorem lacinia risus, ac commodo orci erat eu massa. Sed sit amet nulla ipsum. Donec felis mauris, vulputate sed tempor at, aliquam a ligula. Pellentesque non pulvinar nisi.</p>
-							</div>
-							<div class="tab-pane" id="messages">
-								<h3>Announcement! <small>Paul John Matienzo</small></h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales at. Nulla tellus elit, varius non commodo eget, mattis vel eros. In sed ornare nulla. Donec consectetur, velit a pharetra ultricies, diam lorem lacinia risus, ac commodo orci erat eu massa. Sed sit amet nulla ipsum. Donec felis mauris, vulputate sed tempor at, aliquam a ligula. Pellentesque non pulvinar nisi.</p>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor.</p>
-							</div>
-						</div>
-					</div>
-				</div><!--/span-->
-
-
-				<!-- Member -->	
-				<div class="box span4">
-					<div class="box-header well" data-original-title>
-						<h2><i class="icon-bookmark"></i> Training Activity</h2>
-						<div class="box-icon">
-							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
-							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
-						</div>
-					</div>
-					<div class="box-content">
-						<div class="box-content">
-							<ul class="dashboard-list">
-								<li>
-									<a href="#">
-										<img class="dashboard-avatar" alt="Usman" src="http://sphotos-g.ak.fbcdn.net/hphotos-ak-frc1/480249_4301432941351_853139775_n.jpg"></a>
-										<strong>Batch ID:</strong> <a href="#">TS13-ASB-001
-									</a><br>
-									<strong>Date:</strong> 17/05/2012<br>
-									<strong>Status:</strong> <span class="label label-important">Banned</span>                                  
-								</li>
-								<li>
-									<a href="#">
-										<img class="dashboard-avatar" alt="Sheikh Heera" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/c0.76.621.621/s160x160/75014_597366346945261_1152212333_n.jpg"></a>
-										<strong>Batch ID:</strong> <a href="#">TS13-ASB-002
-									</a><br>
-									<strong>Date:</strong> 17/05/2012<br>
-									<strong>Status:</strong> <span class="label label-warning">This is love</span>                                 
-								</li>
-								<li>
-									<a href="#">
-										<img class="dashboard-avatar" alt="Abdullah" src="http://sphotos-g.ak.fbcdn.net/hphotos-ak-frc1/480249_4301432941351_853139775_n.jpg"></a>
-										<strong>Batch ID:</strong> <a href="#">TS13-ASB-003
-									</a><br>
-									<strong>Date:</strong> 25/05/2012<br>
-									<strong>Status:</strong> <span class="label label-important">Banned</span>                                  
-								</li>
-								<li>
-									<div id="realtimechart" style="height:40px;"></div>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div><!--/span-->
-						
-				
-			</div><!--/row-->
+			
        
 			<!-- content ends -->
 			</div><!--/#content.span10-->
