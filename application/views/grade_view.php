@@ -15,6 +15,86 @@
 	<meta charset="utf-8">
 	<title>AMI Training Center - Manage Profile</title>
 
+	<!-- 1. Add these JavaScript inclusions in the head of your page -->
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+		<script type="text/javascript" src="<?php echo base_url();?>js/highcharts.js"></script>
+		
+		<!-- 1a) Optional: add a theme file -->
+		<!--
+			<script type="text/javascript" src="../js/themes/gray.js"></script>
+		-->
+		
+		<!-- 1b) Optional: the exporting module -->
+		<script type="text/javascript" src="<?php echo base_url();?>js/modules/exporting.js"></script>
+		
+		
+		<!-- 2. Add the JavaScript to initialize the chart on document ready -->
+		<script type="text/javascript">
+		
+			var chart;
+			$(document).ready(function() {
+				chart = new Highcharts.Chart({
+					chart: {
+						renderTo: 'container',
+						defaultSeriesType: 'column'
+					},
+					title: {
+						text: 'Passers Per Batch'
+					},
+					subtitle: {
+						text: 'Summary'
+					},
+					xAxis: {
+						categories: [
+							'TS13-ASB-001', 
+							'TS13-ASB-002', 
+							'TS13-ASB-003'
+						]
+					},
+					yAxis: {
+						min: 0,
+						title: {
+							text: 'Number of Students'
+						}
+					},
+					legend: {
+						layout: 'vertical',
+						backgroundColor: '#FFFFFF',
+						align: 'left',
+						verticalAlign: 'top',
+						x: 100,
+						y: 70,
+						floating: true,
+						shadow: true
+					},
+					tooltip: {
+						formatter: function() {
+							return ''+
+								this.x +': '+ this.y +' points';
+						}
+					},
+					plotOptions: {
+						column: {
+							pointPadding: 0.2,
+							borderWidth: 0
+						}
+					},
+				        series: [{
+						name: 'Passed',
+						data: [90.9, 80.5, 106.4]
+				
+					}, {
+						name: 'Failed',
+						data: [3, 2, 10]
+				
+					}]
+				});
+				
+				
+			});
+				
+		</script>
+
 
 	<!-- The styles -->
 	<link href="<?php echo base_url();?>css/bootstrap-cerulean.css" rel="stylesheet">
@@ -155,102 +235,184 @@
 						<a href="<?php echo base_url();?>index.php/dashboard">Home</a> <span class="divider">/</span>
 					</li>
 					<li>
-						<a href="<?php echo base_url();?>index.php/profile">Manage Profile</a>
+						<a href="<?php echo base_url();?>index.php/grade">Grade Sheet</a>
 					</li>
 				</ul>
 				
 			</div>
-			
-			
+			<!--
+			<div class="alert alert-success">
+				<b>Note:</b>
+				<ul>
+					<li>Use the Search bar to filter the information you need</li>
+					<li>Click the column name to toggle order by column</li>
+				</ul>
+			</div>
+			-->
+
 			<div class="row-fluid">
-				<div class="box span12">
-					<div class="box-header well">
-						<h2><i class="icon-cog"></i> Edit Your Profile</h2>
+				<!-- list module-->
+				<div class="box span8">
+					<div class="box-header well" data-original-title>
+						<h2><i class="icon-user"></i> Examination Scores</h2>
 						<div class="box-icon">
-							<!--<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>-->
+							<!--
+							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
+							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
+						-->
 						</div>
 					</div>
 					<div class="box-content">
-						<div class="span3">
-							<ul class="thumbnails">
 
-								<li id="image-1" class="thumbnail">
-								    <a style="background:url()" title="" href="<?php echo base_url();?>img/user.png">
-								      <img src="<?php echo base_url();?>img/user.png" alt="">
-								    </a>
-								 </li>
+						<table>
+							<tr>
+								<td >
+									Select Batch: <br>
+									<select>
+										<option>TS13-ASB-001</option>
+										<option selected="selected">TS13-ASB-002</option>
+										<option>TS13-ASB-003</option>
 
-								 <li>
-								 	<div class="control-group">
-										<label class="control-label">Change Profile Picture</label>
-										<div class="controls">
-										  <input type="file">
-										</div>
-							  		</div>
-
-								 </li>
-							 </ul>
-							 
-						</div>
-						<div class="span9">
-							<?php if(!is_null($this->session->userdata('error'))) echo $this->session->userdata('error'); ?>
-							<table class="table">
-								<form action="<?php echo base_url();?>index.php/edit_profile" method="post">
-									<tr>
-										<td><h3>Change Display Name</h3></td>
-										<td>&nbsp;</td>
-									</tr>
-									<tr>
-										<td>Display Name: </td>
-										<td><input type="text" name="displayname" 
-											value="<?php echo $this->session->userdata('displayname');?>"></td>
-									</tr>
-									<tr>
-										<td>Email Address: </td>
-										<td><input type="text" name="email"
-											value="<?php echo $this->session->userdata('email');?>"></td>
-									</tr>
+									</select>
+								</td>
+								<td> 
+							</tr>
+						</table>
+						<table class="table table-striped table-bordered bootstrap-datatable datatable">
+						  <thead>
+							  <tr>
+								  <th>Trainee ID</th>
+								  <th>Examinee Name</th>
+								  <th>Score</th>
+								  <th>&nbsp;</th>
+							  </tr>
+						  </thead>   
+						  
+							
+								<tbody>
 
 									<tr>
-										<td>&nbsp;</td>
-										<td>
-											<input type="submit" value="Change Display Name" class="btn btn-info"/>
-										</td>
-									</tr>
-								</form>
-								<form action="<?php echo base_url();?>index.php/edit_profile/change_password" method="post">
-									<tr>
-										<td><h3>Change Password</h3></td>
-										<td>&nbsp;</td>
-									</tr>	
-									<tr>
-										<td>Old Password: </td>
-										<td><input type="password" id="oldpassword" name="oldpassword" 
-											value="<?php echo $this->session->userdata('password');?>"></td>
-									</tr>
-									<tr>
-										<td>New Password: </td>
-										<td><input type="password" id="newpassword" name="newpassword"></td>
-									</tr>
-									<tr>
-										<td>Confirm Password: </td>
-										<td><input type="password" id="confirmpassword" name="confirmpassword"></td>
-									</tr>
-									<tr>
-										<td>&nbsp;</td>
-										<td>
-											<input type="submit" value="Change Password" class="btn btn-primary"/>
-										</td>
-									</tr>	
-								</form>
-							</table>
-						</div>
-											
-						<div class="clearfix"></div>
+									<td>AMI1304-REG-0007</td>
+									<td>MARQUESES, JANICE</td>
+									<td>80 / 140 </td>
+									<td>
+										<span class="label label-success">PASSED</span>  	
+										
+									</td>
+								</tr>
+								<tr>
+									<td>AMI1304-REG-0008</td>
+									<td>SALANDANAN, JOCILYN</td>
+									<td>98 / 140 </td>
+									<td>
+										<span class="label label-success">PASSED</span>  	
+										
+									</td>
+								</tr>
+								<tr>
+									<td>AMI1304-REG-0009</td>
+									<td>ESPELETA, MARIA ANGELICA</td>
+									<td>101 / 140 </td>
+									<td>
+										<span class="label label-success">PASSED</span>  	
+										
+									</td>
+								</tr>
+								<tr>
+									<td>AMI1304-REG-0010</td>
+									<td>ASIS, FLORENCE VIDA</td>
+									<td>89 / 140 </td>
+									<td>
+										<span class="label label-success">PASSED</span>  	
+										
+									</td>
+								</tr>
+								<tr>
+									<td>AMI1304-REG-0011</td>
+									<td>UBAS, FRANCHESCA</td>
+									<td>121 / 140 </td>
+									<td>
+										<span class="label label-success">PASSED</span>  	
+										
+									</td>
+								</tr>
+								<tr>
+									<td>AMI1304-REG-0012</td>
+									<td>REJUSO, MARIE DAISY</td>
+									<td>90 / 140 </td>
+									<td>
+										<span class="label label-success">PASSED</span>  	
+										
+									</td>
+								</tr>
+								<tr>
+									<td>AMI1304-REG-0013</td>
+									<td>VIRAY HANNAH MAE</td>
+									<td>91 / 140 </td>
+									<td>
+										<span class="label label-success">PASSED</span>  	
+										
+									</td>
+								</tr>
+								<tr>
+									<td>AMI1304-REG-0014</td>
+									<td>GARCIA, CRISDEL BRIAN</td>
+									<td>30 / 140 </td>
+									<td>
+										<span class="label label-warning">FAILED</span>  	
+										
+									</td>
+								</tr>
+								<tr>
+									<td>AMI1304-REG-0015</td>
+									<td>VERZO, MELANIE</td>
+									<td>80 / 140 </td>
+									<td>
+										<span class="label label-success">PASSED</span>  	
+										
+									</td>
+								</tr>
+								<tr>
+									<td>AMI1304-REG-0016</td>
+									<td>BASCON, MA. BIANCA ISABEL</td>
+									<td>81/ 140 </td>
+									<td>
+										<span class="label label-success">PASSED</span>  	
+										
+									</td>
+								</tr>
+							</tbody>
+
+								</tbody>
+								
+						</table>
+						<small>Page rendered in: {elapsed_time} seconds</small>
 					</div>
 				</div>
-			</div>
+				<div class="span4">
+
+					<!-- add exam -->
+					<div class="box">
+						<div class="box-header well" data-original-title>
+							<h2><i class="icon-user"></i> Examination Summaries</h2>
+						</div>
+						
+						<div class="box-content">
+							<?php if(!is_null($this->session->userdata('error'))) echo $this->session->userdata('error'); ?>
+							<form method="post" action="<?php echo base_url();?>index.php/examination/add_examination">
+								
+							</form>
+							<div id="container" style="width: 100%; height: 400px; margin: 0 auto"></div>
+							
+						</div>
+					</div>
+					<!-- add exam -->
+				</div>
 			
+		</div>
+		
+
        
 			<!-- content ends -->
 			</div><!--/#content.span10-->
@@ -258,26 +420,78 @@
 				
 		<hr>
 
-		<div class="modal hide fade" id="myModal">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">×</button>
-				<h3>Settings</h3>
-			</div>
-			<div class="modal-body">
-				<p>Here settings can be configured...</p>
-			</div>
-			<div class="modal-footer">
-				<a href="#" class="btn" data-dismiss="modal">Close</a>
-				<a href="#" class="btn btn-primary">Save changes</a>
-			</div>
-		</div>
-
 		<footer>
 			<p class="pull-left">&copy; <a href="" target="_blank">Alliance Mansols Incorporated</a> 2013</p>
 			<p class="pull-right">Powered by: <a href="">TDC</a></p>
 		</footer>
 		
 	</div><!--/.fluid-container-->
+
+
+	<div class="modal hide fade" id="modalConfirm">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">×</button>
+			<h3>You are about to delete an examination. </h3>
+		</div>
+		<div class="modal-body">
+			<p>However, the examination results will not be deleted. Are you sure you want to proceed?</p>
+		</div>
+		<div class="modal-footer">
+			<a class="btn btn-primary" id="triggerdelete">Yes</a>
+			<a href="#" class="btn" data-dismiss="modal">No</a>
+		</div>
+	</div>
+
+	<div class="modal hide fade" id="modalEditExamination">
+		<form method="post" action="<?php echo base_url();?>index.php/examination/edit_examination">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h3>Edit Examination</h3>
+			</div>
+			<div class="modal-body">
+				
+					<table class="table">
+						<tr>
+							<td>
+								<label>Examination Name: </label>
+								<input autofocus type="text" id="edit_examination_name" name="edit_examination_name">
+							</td>
+							
+						</tr>
+
+						<tr style="display:none">
+							<td>
+								<label>No. of Questions: </label>
+								<input type="text" id="edit_no_of_questions" name="edit_no_of_questions">
+							</td>
+							
+						</tr>
+						<tr style="display:none">
+							<td>
+								<label>No. of Choices: </label>
+								<select id="edit_no_of_choices" name="edit_no_of_choices">
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+								</select>
+							</td>
+						</tr>
+						
+					</table>
+				
+				
+			</div>
+			<div class="modal-footer">
+				<a href="#" class="btn" data-dismiss="modal">Cancel</a>
+				<button class="btn btn-primary" type="submit">Save changes</button>
+			</div>
+		</form>
+	</div>
 
 	<!-- external javascript
 	================================================== -->
@@ -353,6 +567,47 @@
 	<!-- application script for Charisma demo -->
 	<script src="<?php echo base_url();?>js/charisma.js"></script>
 	
-		
+	<script type="text/javascript" charset="utf-8">
+
+		$(".editbutton").click(function() {
+		        //$('#modalEditSemester').modal('show');
+		        var form_data = {
+		        	dataid: $(this).attr('id'),
+		        	ajax: '1'
+		        };
+
+		        var request = $.ajax({
+		        	url: "<?php echo base_url();?>index.php/examination/edit_examination",
+		        	type: 'POST',
+		        	data: form_data
+		        });
+
+		        request.done(function (response, textStatus, jqXHR){
+			        $('#modalEditExamination').modal('show');
+					var temp = new Array();
+					temp = response.split("*");
+					$('#edit_examination_name').val(temp[0]);
+					$('#edit_no_of_questions').val(temp[1]);
+					$('#edit_no_of_choices').val(temp[2]);
+
+			    });
+				    	
+			});
+
+			//this is very poor and unsafe don't you worry I'll fix this later using ajax request
+			var deleteid;
+
+			$(".deletebutton").click(function() {
+				$('#modalConfirm').modal('show');
+				deleteid = $(this).attr('id');
+
+			});
+
+			$("#triggerdelete").click(function() {
+		        window.location.href = "<?php echo base_url();?>index.php/examination/delete_examination/" + deleteid;				    	
+			});
+
+	</script>
+
 </body>
 </html>

@@ -81,7 +81,6 @@
 				<div class="well span5 center login-box">
 					<form class="form-horizontal" action='<?php echo base_url();?>index.php/authentication' method="post">
 						<fieldset>
-
 							<div class="input-prepend" title="Enter Username" data-rel="tooltip">
 								<span class="add-on"><i class="icon-user"></i></span>
 								<input autofocus class="input-large span10" name="username" id="username" type="text" />

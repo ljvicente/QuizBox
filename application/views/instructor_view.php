@@ -161,28 +161,28 @@
 				<div class="alert alert-warning">You are logged in an Instructor Account</div>
 			</div>
 			<div class="sortable row-fluid">
-				<a data-rel="tooltip" title="6 absent for today" class="well span3 top-block" href="#">
+				<a data-rel="tooltip" title="6 absent for today" class="well span3 top-block" href="<?php echo base_url();?>index.php/attendance">
 					<span class="icon32 icon-red icon-check"></span>
 					<div>Attendance Checker</div>
 					<div></div>
 					<span class="notification">6</span>
 				</a>
 
-				<a data-rel="tooltip" title="Add, Edit or Delete Exam or Exam Items" class="well span3 top-block" href="#">
+				<a data-rel="tooltip" title="Add, Edit or Delete Exam or Exam Items" class="well span3 top-block" href="<?php echo base_url();?>index.php/examination">
 					<span class="icon32 icon-orange icon-briefcase"></span>
 					<div>Manage Examinations</div>
 					<div></div>
 					<!--<span class="notification green">4</span>-->
 				</a>
 
-				<a data-rel="tooltip" title="Passing rate of the latest batch is 98%" class="well span3 top-block" href="#">
+				<a data-rel="tooltip" title="Passing rate of the latest batch is 98%" class="well span3 top-block" href="<?php echo base_url();?>index.php/grade">
 					<span class="icon32 icon-green icon-star-on"></span>
 					<div>Trainee Performance</div>
 					<div></div>
 					<span class="notification yellow">98%</span>
 				</a>
 				
-				<a data-rel="tooltip" title="Print Training Reports" class="well span3 top-block" href="#">
+				<a data-rel="tooltip" title="Print Training Reports" class="well span3 top-block" href="<?php echo base_url();?>index.php/reports">
 					<span class="icon32 icon-blue icon-document"></span>
 					<div>Training Reports</div>
 					<div></div>
@@ -232,7 +232,7 @@
 						 
 						<div id="myTabContent" class="tab-content">
 							<div class="tab-pane active" id="info">
-								<h3>SAD Defense is Posponed! <small>3/13/2013</small></h3>
+								<h3>Important Announcement <small>3/13/2013</small></h3>
 								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales at. Nulla tellus elit, varius non commodo eget, mattis vel eros. In sed ornare nulla. Donec consectetur, velit a pharetra ultricies, diam lorem lacinia risus, ac commodo orci erat eu massa. Sed sit amet nulla ipsum. Donec felis mauris, vulputate sed tempor at, aliquam a ligula. Pellentesque non pulvinar nisi.</p>
 							</div>
 							<div class="tab-pane" id="custom">
@@ -253,7 +253,7 @@
 				<!-- Member -->	
 				<div class="box span4">
 					<div class="box-header well" data-original-title>
-						<h2><i class="icon-bookmark"></i> Training Activity</h2>
+						<h2><i class="icon-bookmark"></i> Batch Activity</h2>
 						<div class="box-icon">
 							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
 							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
@@ -264,31 +264,29 @@
 							<ul class="dashboard-list">
 								<li>
 									<a href="#">
-										<img class="dashboard-avatar" alt="Usman" src="http://sphotos-g.ak.fbcdn.net/hphotos-ak-frc1/480249_4301432941351_853139775_n.jpg"></a>
+										<img class="dashboard-avatar" alt="Usman" src="http://www.avlandesign.com/img/batch_converter_icon.png"></a>
 										<strong>Batch ID:</strong> <a href="#">TS13-ASB-001
 									</a><br>
 									<strong>Date:</strong> 17/05/2012<br>
-									<strong>Status:</strong> <span class="label label-important">Banned</span>                                  
+									<strong>Status:</strong> <span class="label label-important">Pending</span>                                  
 								</li>
 								<li>
 									<a href="#">
-										<img class="dashboard-avatar" alt="Sheikh Heera" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/c0.76.621.621/s160x160/75014_597366346945261_1152212333_n.jpg"></a>
+										<img class="dashboard-avatar" alt="Sheikh Heera" src="http://www.avlandesign.com/img/batch_converter_icon.png"></a>
 										<strong>Batch ID:</strong> <a href="#">TS13-ASB-002
 									</a><br>
 									<strong>Date:</strong> 17/05/2012<br>
-									<strong>Status:</strong> <span class="label label-warning">This is love</span>                                 
+									<strong>Status:</strong> <span class="label label-info">Under Training</span>                                 
 								</li>
 								<li>
 									<a href="#">
-										<img class="dashboard-avatar" alt="Abdullah" src="http://sphotos-g.ak.fbcdn.net/hphotos-ak-frc1/480249_4301432941351_853139775_n.jpg"></a>
+										<img class="dashboard-avatar" alt="Sheikh Heera" src="http://www.avlandesign.com/img/batch_converter_icon.png"></a>
 										<strong>Batch ID:</strong> <a href="#">TS13-ASB-003
 									</a><br>
-									<strong>Date:</strong> 25/05/2012<br>
-									<strong>Status:</strong> <span class="label label-important">Banned</span>                                  
+									<strong>Date:</strong> 17/05/2012<br>
+									<strong>Status:</strong> <span class="label label-success">Deployed</span>                                 
 								</li>
-								<li>
-									<div id="realtimechart" style="height:40px;"></div>
-								</li>
+								
 							</ul>
 						</div>
 					</div>
@@ -397,6 +395,8 @@
 	<script src="<?php echo base_url();?>js/jquery.history.js"></script>
 	<!-- application script for Charisma demo -->
 	<script src="<?php echo base_url();?>js/charisma.js"></script>
+
+
 	
 		
 </body>

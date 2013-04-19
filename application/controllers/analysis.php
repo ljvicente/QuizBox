@@ -7,6 +7,13 @@ class Analysis extends CI_Controller {
 	}
 
 	function index() {
-		$this->load->view('analysis_view');
+
+		$this->load->model('examination_model');
+
+		$query = $this->examination_model->list_examinations();
+
+		$data['records'] = $query;
+
+		$this->load->view('analysis_view', $data);
 	}
 }

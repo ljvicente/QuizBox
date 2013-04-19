@@ -155,99 +155,67 @@
 						<a href="<?php echo base_url();?>index.php/dashboard">Home</a> <span class="divider">/</span>
 					</li>
 					<li>
-						<a href="<?php echo base_url();?>index.php/profile">Manage Profile</a>
+						<a href="<?php echo base_url();?>index.php/presenter">Classroom Presenter</a>
 					</li>
 				</ul>
 				
 			</div>
-			
-			
+			<!--
+			<div class="alert alert-success">
+				<b>Note:</b>
+				<ul>
+					<li>Use the Search bar to filter the information you need</li>
+					<li>Click the column name to toggle order by column</li>
+				</ul>
+			</div>
+			-->
+
 			<div class="row-fluid">
-				<div class="box span12">
-					<div class="box-header well">
-						<h2><i class="icon-cog"></i> Edit Your Profile</h2>
+				<div class="box span9">
+					<div class="box-header well" data-original-title>
+						<h2><i class="icon-user"></i> Presenter</h2>
 						<div class="box-icon">
-							<!--<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>-->
+							<!--
+							Powered by: 
+							<img src="<?php echo base_url();?>img/docs_logo.png" height="30px">
+							-->
+						</div>
+
+						
+					</div>
+					<div class="box-content">
+						<iframe src="http://docs.google.com/viewer?url=http%3A%2F%2Fjemnuine.com%2Fdemo%2Fdemo.pptx&embedded=true" width="100%" height="400" style="border: none;"></iframe>
+					</div>
+					
+				</div>
+				<div class="box span3">
+					<div class="box-header well" data-original-title>
+						<h2><i class="icon-user"></i> Select Modules</h2>
+						<div class="box-icon">
+							<!--
+							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
+							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
+						-->
 						</div>
 					</div>
 					<div class="box-content">
-						<div class="span3">
-							<ul class="thumbnails">
-
-								<li id="image-1" class="thumbnail">
-								    <a style="background:url()" title="" href="<?php echo base_url();?>img/user.png">
-								      <img src="<?php echo base_url();?>img/user.png" alt="">
-								    </a>
-								 </li>
-
-								 <li>
-								 	<div class="control-group">
-										<label class="control-label">Change Profile Picture</label>
-										<div class="controls">
-										  <input type="file">
-										</div>
-							  		</div>
-
-								 </li>
-							 </ul>
-							 
-						</div>
-						<div class="span9">
-							<?php if(!is_null($this->session->userdata('error'))) echo $this->session->userdata('error'); ?>
+						<ul>
+							
 							<table class="table">
-								<form action="<?php echo base_url();?>index.php/edit_profile" method="post">
-									<tr>
-										<td><h3>Change Display Name</h3></td>
-										<td>&nbsp;</td>
-									</tr>
-									<tr>
-										<td>Display Name: </td>
-										<td><input type="text" name="displayname" 
-											value="<?php echo $this->session->userdata('displayname');?>"></td>
-									</tr>
-									<tr>
-										<td>Email Address: </td>
-										<td><input type="text" name="email"
-											value="<?php echo $this->session->userdata('email');?>"></td>
-									</tr>
+									
+									<?php
 
-									<tr>
-										<td>&nbsp;</td>
-										<td>
-											<input type="submit" value="Change Display Name" class="btn btn-info"/>
-										</td>
-									</tr>
-								</form>
-								<form action="<?php echo base_url();?>index.php/edit_profile/change_password" method="post">
-									<tr>
-										<td><h3>Change Password</h3></td>
-										<td>&nbsp;</td>
-									</tr>	
-									<tr>
-										<td>Old Password: </td>
-										<td><input type="password" id="oldpassword" name="oldpassword" 
-											value="<?php echo $this->session->userdata('password');?>"></td>
-									</tr>
-									<tr>
-										<td>New Password: </td>
-										<td><input type="password" id="newpassword" name="newpassword"></td>
-									</tr>
-									<tr>
-										<td>Confirm Password: </td>
-										<td><input type="password" id="confirmpassword" name="confirmpassword"></td>
-									</tr>
-									<tr>
-										<td>&nbsp;</td>
-										<td>
-											<input type="submit" value="Change Password" class="btn btn-primary"/>
-										</td>
-									</tr>	
-								</form>
+										if(isset($records)) {
+											foreach ($records as $row) {
+												echo '<tr><td><a href="">' . $row->module_name . '</a></td><tr>';
+											}
+										}
+									?>
 							</table>
-						</div>
-											
-						<div class="clearfix"></div>
+						</ul>	
 					</div>
+					
 				</div>
 			</div>
 			

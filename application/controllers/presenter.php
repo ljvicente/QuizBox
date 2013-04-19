@@ -7,6 +7,13 @@ class Presenter extends CI_Controller {
 	}
 
 	function index() {
-		$this->load->view('presenter_view');
+
+		$this->load->model('presenter_model');
+
+		if($query = $this->presenter_model->list_modules()) {
+			$data['records'] = $query;
+		}
+
+		$this->load->view('presenter_view', $data);
 	}
 }

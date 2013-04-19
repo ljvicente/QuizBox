@@ -7,6 +7,13 @@ class Activate extends CI_Controller {
 	}
 
 	function index() {
-		$this->load->view('activate_view');
+
+		$this->load->model('examination_model');
+
+		$query = $this->examination_model->list_examinations();
+
+		$data['records'] = $query;
+
+		$this->load->view('activate_view', $data);
 	}
 }

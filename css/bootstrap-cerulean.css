@@ -4206,7 +4206,7 @@ a.badge:hover {
   font-family: 'Karla', sans-serif;
 }
 .navbar .navbar-inner {
-  background-color: #072f5a;
+  background-color: rgb(197, 37, 37);
 }
 .navbar-inner{
  /* background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(0,0,0,0.15) 50%, rgba(30,30,30,0) 100%);

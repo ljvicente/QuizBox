@@ -155,102 +155,66 @@
 						<a href="<?php echo base_url();?>index.php/dashboard">Home</a> <span class="divider">/</span>
 					</li>
 					<li>
-						<a href="<?php echo base_url();?>index.php/profile">Manage Profile</a>
+						<a href="<?php echo base_url();?>index.php/examination">Item Analysis</a>
 					</li>
 				</ul>
 				
 			</div>
-			
-			
+			<!--
+			<div class="alert alert-success">
+				<b>Note:</b>
+				<ul>
+					<li>Use the Search bar to filter the information you need</li>
+					<li>Click the column name to toggle order by column</li>
+				</ul>
+			</div>
+			-->
+
 			<div class="row-fluid">
+				<!-- list module-->
 				<div class="box span12">
-					<div class="box-header well">
-						<h2><i class="icon-cog"></i> Edit Your Profile</h2>
+					<div class="box-header well" data-original-title>
+						<h2><i class="icon-user"></i> Effectiveness Test</h2>
 						<div class="box-icon">
-							<!--<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>-->
+							<!--
+							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
+							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
+						-->
 						</div>
 					</div>
 					<div class="box-content">
-						<div class="span3">
-							<ul class="thumbnails">
 
-								<li id="image-1" class="thumbnail">
-								    <a style="background:url()" title="" href="<?php echo base_url();?>img/user.png">
-								      <img src="<?php echo base_url();?>img/user.png" alt="">
-								    </a>
-								 </li>
 
-								 <li>
-								 	<div class="control-group">
-										<label class="control-label">Change Profile Picture</label>
-										<div class="controls">
-										  <input type="file">
-										</div>
-							  		</div>
+						<table class="table table-striped table-bordered bootstrap-datatable datatable">
+						  <thead>
+							  <tr>
+								  <th>Examination Name</th>
+								  <th>&nbsp;</th>
+							  </tr>
+						  </thead>   
+						  
+							
+							<?php if(isset($records)) : foreach($records as $row) : ?>
+								<tr>
+									<td><?php echo $row->examination_name;?></td>
+									<td>
+										<a id="<?php echo $row->examination_id;?>" style="cursor:pointer;" class="btn btn-primary"><i class="icon-edit icon-white"></i> Run Analysis</a>		
+									</td>
+								</tr>
+								<?php endforeach;?>
 
-								 </li>
-							 </ul>
-							 
-						</div>
-						<div class="span9">
-							<?php if(!is_null($this->session->userdata('error'))) echo $this->session->userdata('error'); ?>
-							<table class="table">
-								<form action="<?php echo base_url();?>index.php/edit_profile" method="post">
-									<tr>
-										<td><h3>Change Display Name</h3></td>
-										<td>&nbsp;</td>
-									</tr>
-									<tr>
-										<td>Display Name: </td>
-										<td><input type="text" name="displayname" 
-											value="<?php echo $this->session->userdata('displayname');?>"></td>
-									</tr>
-									<tr>
-										<td>Email Address: </td>
-										<td><input type="text" name="email"
-											value="<?php echo $this->session->userdata('email');?>"></td>
-									</tr>
-
-									<tr>
-										<td>&nbsp;</td>
-										<td>
-											<input type="submit" value="Change Display Name" class="btn btn-info"/>
-										</td>
-									</tr>
-								</form>
-								<form action="<?php echo base_url();?>index.php/edit_profile/change_password" method="post">
-									<tr>
-										<td><h3>Change Password</h3></td>
-										<td>&nbsp;</td>
-									</tr>	
-									<tr>
-										<td>Old Password: </td>
-										<td><input type="password" id="oldpassword" name="oldpassword" 
-											value="<?php echo $this->session->userdata('password');?>"></td>
-									</tr>
-									<tr>
-										<td>New Password: </td>
-										<td><input type="password" id="newpassword" name="newpassword"></td>
-									</tr>
-									<tr>
-										<td>Confirm Password: </td>
-										<td><input type="password" id="confirmpassword" name="confirmpassword"></td>
-									</tr>
-									<tr>
-										<td>&nbsp;</td>
-										<td>
-											<input type="submit" value="Change Password" class="btn btn-primary"/>
-										</td>
-									</tr>	
-								</form>
-							</table>
-						</div>
-											
-						<div class="clearfix"></div>
+							<?php endif; ?>
+							
+						</table>
+						<small>Page rendered in: {elapsed_time} seconds</small>
 					</div>
 				</div>
-			</div>
+				
 			
+		</div>
+		
+
        
 			<!-- content ends -->
 			</div><!--/#content.span10-->
@@ -258,26 +222,78 @@
 				
 		<hr>
 
-		<div class="modal hide fade" id="myModal">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">×</button>
-				<h3>Settings</h3>
-			</div>
-			<div class="modal-body">
-				<p>Here settings can be configured...</p>
-			</div>
-			<div class="modal-footer">
-				<a href="#" class="btn" data-dismiss="modal">Close</a>
-				<a href="#" class="btn btn-primary">Save changes</a>
-			</div>
-		</div>
-
 		<footer>
 			<p class="pull-left">&copy; <a href="" target="_blank">Alliance Mansols Incorporated</a> 2013</p>
 			<p class="pull-right">Powered by: <a href="">TDC</a></p>
 		</footer>
 		
 	</div><!--/.fluid-container-->
+
+
+	<div class="modal hide fade" id="modalConfirm">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">×</button>
+			<h3>You are about to delete an examination. </h3>
+		</div>
+		<div class="modal-body">
+			<p>However, the examination results will not be deleted. Are you sure you want to proceed?</p>
+		</div>
+		<div class="modal-footer">
+			<a class="btn btn-primary" id="triggerdelete">Yes</a>
+			<a href="#" class="btn" data-dismiss="modal">No</a>
+		</div>
+	</div>
+
+	<div class="modal hide fade" id="modalEditExamination">
+		<form method="post" action="<?php echo base_url();?>index.php/examination/edit_examination">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h3>Edit Examination</h3>
+			</div>
+			<div class="modal-body">
+				
+					<table class="table">
+						<tr>
+							<td>
+								<label>Examination Name: </label>
+								<input autofocus type="text" id="edit_examination_name" name="edit_examination_name">
+							</td>
+							
+						</tr>
+
+						<tr style="display:none">
+							<td>
+								<label>No. of Questions: </label>
+								<input type="text" id="edit_no_of_questions" name="edit_no_of_questions">
+							</td>
+							
+						</tr>
+						<tr style="display:none">
+							<td>
+								<label>No. of Choices: </label>
+								<select id="edit_no_of_choices" name="edit_no_of_choices">
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+								</select>
+							</td>
+						</tr>
+						
+					</table>
+				
+				
+			</div>
+			<div class="modal-footer">
+				<a href="#" class="btn" data-dismiss="modal">Cancel</a>
+				<button class="btn btn-primary" type="submit">Save changes</button>
+			</div>
+		</form>
+	</div>
 
 	<!-- external javascript
 	================================================== -->
@@ -353,6 +369,47 @@
 	<!-- application script for Charisma demo -->
 	<script src="<?php echo base_url();?>js/charisma.js"></script>
 	
-		
+	<script type="text/javascript" charset="utf-8">
+
+		$(".editbutton").click(function() {
+		        //$('#modalEditSemester').modal('show');
+		        var form_data = {
+		        	dataid: $(this).attr('id'),
+		        	ajax: '1'
+		        };
+
+		        var request = $.ajax({
+		        	url: "<?php echo base_url();?>index.php/examination/edit_examination",
+		        	type: 'POST',
+		        	data: form_data
+		        });
+
+		        request.done(function (response, textStatus, jqXHR){
+			        $('#modalEditExamination').modal('show');
+					var temp = new Array();
+					temp = response.split("*");
+					$('#edit_examination_name').val(temp[0]);
+					$('#edit_no_of_questions').val(temp[1]);
+					$('#edit_no_of_choices').val(temp[2]);
+
+			    });
+				    	
+			});
+
+			//this is very poor and unsafe don't you worry I'll fix this later using ajax request
+			var deleteid;
+
+			$(".deletebutton").click(function() {
+				$('#modalConfirm').modal('show');
+				deleteid = $(this).attr('id');
+
+			});
+
+			$("#triggerdelete").click(function() {
+		        window.location.href = "<?php echo base_url();?>index.php/examination/delete_examination/" + deleteid;				    	
+			});
+
+	</script>
+
 </body>
 </html>
