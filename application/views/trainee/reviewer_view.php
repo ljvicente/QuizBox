@@ -1,4 +1,4 @@
-<?php if($this->session->userdata('permission') != 'instructor') { redirect(base_url() . 'index.php/404');} ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -155,7 +155,7 @@
 						<a href="<?php echo base_url();?>index.php/dashboard">Home</a> <span class="divider">/</span>
 					</li>
 					<li>
-						<a href="<?php echo base_url();?>index.php/examination">Activate Examination</a>
+						<a href="<?php echo base_url();?>index.php/presenter">Classroom Presenter</a>
 					</li>
 				</ul>
 				
@@ -171,10 +171,26 @@
 			-->
 
 			<div class="row-fluid">
-				<!-- list module-->
-				<div class="box span8">
+				<div class="box span9">
 					<div class="box-header well" data-original-title>
-						<h2><i class="icon-user"></i> Activate Examinations</h2>
+						<h2><i class="icon-user"></i> Presenter</h2>
+						<div class="box-icon">
+							<!--
+							Powered by: 
+							<img src="<?php echo base_url();?>img/docs_logo.png" height="30px">
+							-->
+						</div>
+
+						
+					</div>
+					<div class="box-content">
+						<iframe src="http://docs.google.com/viewer?url=http%3A%2F%2Fjemnuine.com%2Fdemo%2Fdemo.pptx&embedded=true" width="100%" height="400" style="border: none;"></iframe>
+					</div>
+					
+				</div>
+				<div class="box span3">
+					<div class="box-header well" data-original-title>
+						<h2><i class="icon-user"></i> Select Modules</h2>
 						<div class="box-icon">
 							<!--
 							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
@@ -184,97 +200,25 @@
 						</div>
 					</div>
 					<div class="box-content">
-
-
-						<table class="table table-striped table-bordered bootstrap-datatable datatable">
-						  <thead>
-							  <tr>
-								  <th>Examination Name <span title=".icon  .icon-triangle-ns " class="icon icon-triangle-ns"></span></th>
-								  <th>No. of Items <span title=".icon  .icon-triangle-ns " class="icon icon-triangle-ns"></span></th>
-								  <th>Date Modified <span title=".icon  .icon-triangle-ns " class="icon icon-triangle-ns"></span></th>
-								  <th>&nbsp;</th>
-							  </tr>
-						  </thead>   
-						  
+						<ul>
 							
-							<?php if(isset($records)) : foreach($records as $row) : ?>
-								<tr>
-									<td><?php echo $row->examination_name;?></td>
-									<td><?php echo $row->no_of_questions;?></td>
-									<td><?php echo $row->date_modified;?></td>
-									<td>
-										<a id="<?php echo $row->examination_id;?>" style="cursor:pointer;" class="btn btn-success"><i class="icon-edit icon-white"></i> Activate</a>	
-										<a id="<?php echo $row->examination_id;?>" style="cursor:pointer;" class="btn btn-danger"><i class="icon-edit icon-white"></i> De-Activate</a>	
-									</td>
-								</tr>
-								<?php endforeach;?>
+							<table class="table">
+									
+									<?php
 
-							<?php endif; ?>
-							
-						</table>
-						<small>Page rendered in: {elapsed_time} seconds</small>
+										if(isset($records)) {
+											foreach ($records as $row) {
+												echo '<tr><td><a href="">' . $row->module_name . '</a></td><tr>';
+											}
+										}
+									?>
+							</table>
+						</ul>	
 					</div>
+					
 				</div>
-				<div class="span4">
-
-					<!-- add exam -->
-					<div class="box">
-						<div class="box-header well" data-original-title>
-							<h2><i class="icon-user"></i> Trainee Activity</h2>
-						</div>
-						
-						<div class="box-content">
-							
-							<form method="post" action="<?php echo base_url();?>index.php/examination/add_examination">
-								<table class="table">
-									<thead>
-
-										<th>
-											Student 
-										</th>
-										<th>Status</th>
-									</thead>
-									<tr>
-										<td>AMI1304-TRAINEE-0341 </td>
-										<td><span class="label label-warning">Taking Test</span></td>
-									</tr>
-									<tr>
-										<td>AMI1304-TRAINEE-0342 </td>
-										<td><span class="label label-warning">Taking Test</span></td>
-									</tr>
-									<tr>
-										<td>AMI1304-TRAINEE-0343 </td>
-										<td><span class="label label-warning">Taking Test</span></td>
-									</tr>
-									<tr>
-										<td>AMI1304-TRAINEE-0344 </td>
-										<td><span class="label label-warning">Taking Test</span></td>
-									</tr>
-									<tr>
-										<td>AMI1304-TRAINEE-0345 </td>
-										<td><span class="label label-success">Finished Test</span></td>
-									</tr>
-									<tr>
-										<td>AMI1304-TRAINEE-0346 </td>
-										<td><span class="label label-success">Finished Test</span></td>
-									</tr>
-									<tr>
-										<td>AMI1304-TRAINEE-0347 </td>
-										<td><span class="label label-warning">Taking Test</span></td>
-									</tr>
-
-								</table>
-							</form>
-							
-							
-						</div>
-					</div>
-					<!-- add exam -->
-				</div>
+			</div>
 			
-		</div>
-		
-
        
 			<!-- content ends -->
 			</div><!--/#content.span10-->
@@ -282,78 +226,26 @@
 				
 		<hr>
 
+		<div class="modal hide fade" id="myModal">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h3>Settings</h3>
+			</div>
+			<div class="modal-body">
+				<p>Here settings can be configured...</p>
+			</div>
+			<div class="modal-footer">
+				<a href="#" class="btn" data-dismiss="modal">Close</a>
+				<a href="#" class="btn btn-primary">Save changes</a>
+			</div>
+		</div>
+
 		<footer>
 			<p class="pull-left">&copy; <a href="" target="_blank">Alliance Mansols Incorporated</a> 2013</p>
 			<p class="pull-right">Powered by: <a href="">TDC</a></p>
 		</footer>
 		
 	</div><!--/.fluid-container-->
-
-
-	<div class="modal hide fade" id="modalConfirm">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal">×</button>
-			<h3>You are about to delete an examination. </h3>
-		</div>
-		<div class="modal-body">
-			<p>However, the examination results will not be deleted. Are you sure you want to proceed?</p>
-		</div>
-		<div class="modal-footer">
-			<a class="btn btn-primary" id="triggerdelete">Yes</a>
-			<a href="#" class="btn" data-dismiss="modal">No</a>
-		</div>
-	</div>
-
-	<div class="modal hide fade" id="modalEditExamination">
-		<form method="post" action="<?php echo base_url();?>index.php/examination/edit_examination">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">×</button>
-				<h3>Edit Examination</h3>
-			</div>
-			<div class="modal-body">
-				
-					<table class="table">
-						<tr>
-							<td>
-								<label>Examination Name: </label>
-								<input autofocus type="text" id="edit_examination_name" name="edit_examination_name">
-							</td>
-							
-						</tr>
-
-						<tr style="display:none">
-							<td>
-								<label>No. of Questions: </label>
-								<input type="text" id="edit_no_of_questions" name="edit_no_of_questions">
-							</td>
-							
-						</tr>
-						<tr style="display:none">
-							<td>
-								<label>No. of Choices: </label>
-								<select id="edit_no_of_choices" name="edit_no_of_choices">
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-									<option value="6">6</option>
-									<option value="7">7</option>
-									<option value="8">8</option>
-									<option value="9">9</option>
-								</select>
-							</td>
-						</tr>
-						
-					</table>
-				
-				
-			</div>
-			<div class="modal-footer">
-				<a href="#" class="btn" data-dismiss="modal">Cancel</a>
-				<button class="btn btn-primary" type="submit">Save changes</button>
-			</div>
-		</form>
-	</div>
 
 	<!-- external javascript
 	================================================== -->
@@ -429,47 +321,6 @@
 	<!-- application script for Charisma demo -->
 	<script src="<?php echo base_url();?>js/charisma.js"></script>
 	
-	<script type="text/javascript" charset="utf-8">
-
-		$(".editbutton").click(function() {
-		        //$('#modalEditSemester').modal('show');
-		        var form_data = {
-		        	dataid: $(this).attr('id'),
-		        	ajax: '1'
-		        };
-
-		        var request = $.ajax({
-		        	url: "<?php echo base_url();?>index.php/examination/edit_examination",
-		        	type: 'POST',
-		        	data: form_data
-		        });
-
-		        request.done(function (response, textStatus, jqXHR){
-			        $('#modalEditExamination').modal('show');
-					var temp = new Array();
-					temp = response.split("*");
-					$('#edit_examination_name').val(temp[0]);
-					$('#edit_no_of_questions').val(temp[1]);
-					$('#edit_no_of_choices').val(temp[2]);
-
-			    });
-				    	
-			});
-
-			//this is very poor and unsafe don't you worry I'll fix this later using ajax request
-			var deleteid;
-
-			$(".deletebutton").click(function() {
-				$('#modalConfirm').modal('show');
-				deleteid = $(this).attr('id');
-
-			});
-
-			$("#triggerdelete").click(function() {
-		        window.location.href = "<?php echo base_url();?>index.php/examination/delete_examination/" + deleteid;				    	
-			});
-
-	</script>
-
+		
 </body>
 </html>

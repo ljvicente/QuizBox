@@ -1,4 +1,4 @@
-
+<?php if($this->session->userdata('permission') != 'instructor') { redirect(base_url() . 'index.php/404');} ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

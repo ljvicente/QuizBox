@@ -1,4 +1,4 @@
-
+<?php if($this->session->userdata('permission') != 'instructor') { redirect(base_url() . 'index.php/404');} ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -282,10 +282,10 @@
 						<table class="table table-striped table-bordered bootstrap-datatable datatable">
 						  <thead>
 							  <tr>
-								  <th>Trainee ID</th>
-								  <th>Examinee Name</th>
-								  <th>Score</th>
-								  <th>&nbsp;</th>
+								  <th>Trainee ID <span title=".icon  .icon-triangle-ns " class="icon icon-triangle-ns"></span></th>
+								  <th>Examinee Name <span title=".icon  .icon-triangle-ns " class="icon icon-triangle-ns"></span></th>
+								  <th>Score <span title=".icon  .icon-triangle-ns " class="icon icon-triangle-ns"></span></th>
+								  <th>Status <span title=".icon  .icon-triangle-ns " class="icon icon-triangle-ns"></span></th>
 							  </tr>
 						  </thead>   
 						  
@@ -395,11 +395,11 @@
 					<!-- add exam -->
 					<div class="box">
 						<div class="box-header well" data-original-title>
-							<h2><i class="icon-user"></i> Examination Summaries</h2>
+							<h2><i class="icon-user"></i> Summary Per Month</h2>
 						</div>
 						
 						<div class="box-content">
-							<?php if(!is_null($this->session->userdata('error'))) echo $this->session->userdata('error'); ?>
+							
 							<form method="post" action="<?php echo base_url();?>index.php/examination/add_examination">
 								
 							</form>

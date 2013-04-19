@@ -1,4 +1,4 @@
-
+<?php if($this->session->userdata('permission') != 'instructor') { redirect(base_url() . 'index.php/404');} ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -189,7 +189,7 @@
 						<table class="table table-striped table-bordered bootstrap-datatable datatable">
 						  <thead>
 							  <tr>
-								  <th>Examination Name</th>
+								  <th>Examination Name <span title=".icon  .icon-triangle-ns " class="icon icon-triangle-ns"></span></th>
 								  <th>&nbsp;</th>
 							  </tr>
 						  </thead>   
@@ -199,7 +199,7 @@
 								<tr>
 									<td><?php echo $row->examination_name;?></td>
 									<td>
-										<a id="<?php echo $row->examination_id;?>" style="cursor:pointer;" class="btn btn-primary"><i class="icon-edit icon-white"></i> Run Analysis</a>		
+										<a href="<?php echo base_url() . 'index.php/analysis/item_analysis/' . $row->examination_id;?>" style="cursor:pointer;" class="btn btn-primary"><i class="icon-edit icon-white"></i>Run Analysis</a>
 									</td>
 								</tr>
 								<?php endforeach;?>

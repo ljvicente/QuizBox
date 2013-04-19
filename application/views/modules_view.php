@@ -1,4 +1,4 @@
-
+<?php if($this->session->userdata('permission') != 'instructor') { redirect(base_url() . 'index.php/404');} ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -238,8 +238,8 @@
 							<table class="table table-striped table-bordered bootstrap-datatable datatable">
 							  <thead>
 								  <tr>
-									  <th>Module Name</th>
-									  <th>Company</th>
+									  <th>Module Name <span title=".icon  .icon-triangle-ns " class="icon icon-triangle-ns"></span></th>
+									  <th>Company <span title=".icon  .icon-triangle-ns " class="icon icon-triangle-ns"></span></th>
 									  <th>&nbsp;</th>
 								  </tr>
 							  </thead>   

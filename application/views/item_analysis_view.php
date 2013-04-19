@@ -155,126 +155,123 @@
 						<a href="<?php echo base_url();?>index.php/dashboard">Home</a> <span class="divider">/</span>
 					</li>
 					<li>
-						<a href="<?php echo base_url();?>index.php/examination">Activate Examination</a>
+						<a href="<?php echo base_url();?>index.php/examination">Generate Examination</a> <span class="divider">/</span>
+					</li>
+					<li>
+						<a href="">Edit Items</a>
 					</li>
 				</ul>
 				
 			</div>
-			<!--
-			<div class="alert alert-success">
-				<b>Note:</b>
-				<ul>
-					<li>Use the Search bar to filter the information you need</li>
-					<li>Click the column name to toggle order by column</li>
-				</ul>
-			</div>
-			-->
-
-			<div class="row-fluid">
-				<!-- list module-->
-				<div class="box span8">
-					<div class="box-header well" data-original-title>
-						<h2><i class="icon-user"></i> Activate Examinations</h2>
-						<div class="box-icon">
-							<!--
-							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
-							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
-							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
-						-->
-						</div>
+		
+		<!-- exam -->
+		<div class="row-fluid">
+			
+			<div class="box span12">
+				<div class="box-header well" data-original-title>
+					<h2><i class="icon-user"></i>
+						<?php 
+							if(isset($examination_name)) {
+								$title = array_shift($examination_name);
+								echo $title . " - Item Analysis";
+							}
+						?>
+					</h2>
+					<div class="box-icon">
+						<!--
+						<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
+						<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+						<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
+					-->
 					</div>
-					<div class="box-content">
+				</div>
+				<div class="box-content">
+					<div class="alert alert-info">Note: Statistics are based on the latest batch of examinees that accomplished the test.</div>
+					<table class="table table-striped table-bordered bootstrap-datatable datatable">
+						<thead>
+							<tr>
+								<th width="75px">Item No.</th>
+								<th>Question</th>
+								<th>Choices</th>
+								<th width="100px">Key Answer</th>
+								<th>Difficulty Index</th>
+								<th>Discrimation Index</th>
+							</tr>
+						</thead>   
+						<tbody>
+							<?php 
 
+								//if(isset($no_of_questions)) {
+									$q = implode('', $no_of_questions); 
+									$c = implode('', $no_of_choices);
 
-						<table class="table table-striped table-bordered bootstrap-datatable datatable">
-						  <thead>
-							  <tr>
-								  <th>Examination Name <span title=".icon  .icon-triangle-ns " class="icon icon-triangle-ns"></span></th>
-								  <th>No. of Items <span title=".icon  .icon-triangle-ns " class="icon icon-triangle-ns"></span></th>
-								  <th>Date Modified <span title=".icon  .icon-triangle-ns " class="icon icon-triangle-ns"></span></th>
-								  <th>&nbsp;</th>
-							  </tr>
-						  </thead>   
-						  
-							
-							<?php if(isset($records)) : foreach($records as $row) : ?>
-								<tr>
-									<td><?php echo $row->examination_name;?></td>
-									<td><?php echo $row->no_of_questions;?></td>
-									<td><?php echo $row->date_modified;?></td>
-									<td>
-										<a id="<?php echo $row->examination_id;?>" style="cursor:pointer;" class="btn btn-success"><i class="icon-edit icon-white"></i> Activate</a>	
-										<a id="<?php echo $row->examination_id;?>" style="cursor:pointer;" class="btn btn-danger"><i class="icon-edit icon-white"></i> De-Activate</a>	
-									</td>
-								</tr>
-								<?php endforeach;?>
+									$i = 0;
 
-							<?php endif; ?>
+									//lipat lipat from array to array
+									foreach ($live_data as $row) {
+
+										echo "<tr>";
+										echo "<td>" . ($i + 1) . "</td>";
+										echo "<td><textarea class='qArea' id='" . $row->question_id . "' rows='5' style='width:95%'>" . $row->questions . "</textarea></td>";
+										echo "<td>";
+										$a = explode('*', $row->answers);
+										$id = '';
+										for ($j=0; $j < $c; $j++) { 
+											if($j==0) { echo 'A: '; $id = 'a';} 
+											if($j==1) { echo 'B: '; $id = 'b';}
+											if($j==2) { echo 'C: '; $id = 'c';}
+											if($j==3) { echo 'D: '; $id = 'd';}
+											if($j==4) { echo 'E: '; $id = 'e';}
+											if($j==5) { echo 'F: '; $id = 'f';}
+											if($j==6) { echo 'G: '; $id = 'g';}
+											if($j==7) { echo 'H: '; $id = 'h';}
+											if($j==8) { echo 'I: '; $id = 'i';}
+											echo "<textarea class='aArea' id='" . $id . $row->question_id . "' rows='3' style='width:90%'>" . $a[$j] . "</textarea><br>";
+										}
+										echo "</td>";
+										echo "<td><select class='key' id='" . $row->question_id . "'>";
+										$selected = $row->correct_answer;
+										$s = '';
+										for ($j=0; $j < $c; $j++) {
+
+											if($j==$selected) { 
+
+												$s = ' selected="selected"';
+											}
+											else {
+
+												$s = ' ';
+											}
+											if($j==0) echo '<option' . $s . 'value="0">A</option>'; 
+											if($j==1) echo '<option' . $s . 'value="1">B</option>'; 
+											if($j==2) echo '<option' . $s . 'value="2">C</option>'; 
+											if($j==3) echo '<option' . $s . 'value="3">D</option>'; 
+											if($j==4) echo '<option' . $s . 'value="4">E</option>'; 
+											if($j==5) echo '<option' . $s . 'value="5">F</option>'; 
+											if($j==6) echo '<option' . $s . 'value="6">G</option>'; 
+											if($j==7) echo '<option' . $s . 'value="7">H</option>'; 
+											if($j==8) echo '<option' . $s . 'value="8">I</option>'; 
+										}
+										echo "</select></td>";
+										echo "<td width='7px'></td><td width='7px'></td>";
+										echo "</tr>";
+
+										$i++;
+
+									}
+
+									
+							?>
+							</tbody>
 							
 						</table>
-						<small>Page rendered in: {elapsed_time} seconds</small>
-					</div>
+					<small>Page rendered in: {elapsed_time} seconds</small>
 				</div>
-				<div class="span4">
+			</div>
 
-					<!-- add exam -->
-					<div class="box">
-						<div class="box-header well" data-original-title>
-							<h2><i class="icon-user"></i> Trainee Activity</h2>
-						</div>
-						
-						<div class="box-content">
-							
-							<form method="post" action="<?php echo base_url();?>index.php/examination/add_examination">
-								<table class="table">
-									<thead>
-
-										<th>
-											Student 
-										</th>
-										<th>Status</th>
-									</thead>
-									<tr>
-										<td>AMI1304-TRAINEE-0341 </td>
-										<td><span class="label label-warning">Taking Test</span></td>
-									</tr>
-									<tr>
-										<td>AMI1304-TRAINEE-0342 </td>
-										<td><span class="label label-warning">Taking Test</span></td>
-									</tr>
-									<tr>
-										<td>AMI1304-TRAINEE-0343 </td>
-										<td><span class="label label-warning">Taking Test</span></td>
-									</tr>
-									<tr>
-										<td>AMI1304-TRAINEE-0344 </td>
-										<td><span class="label label-warning">Taking Test</span></td>
-									</tr>
-									<tr>
-										<td>AMI1304-TRAINEE-0345 </td>
-										<td><span class="label label-success">Finished Test</span></td>
-									</tr>
-									<tr>
-										<td>AMI1304-TRAINEE-0346 </td>
-										<td><span class="label label-success">Finished Test</span></td>
-									</tr>
-									<tr>
-										<td>AMI1304-TRAINEE-0347 </td>
-										<td><span class="label label-warning">Taking Test</span></td>
-									</tr>
-
-								</table>
-							</form>
-							
-							
-						</div>
-					</div>
-					<!-- add exam -->
-				</div>
-			
+			</div>
 		</div>
-		
-
+		<!-- exam -->
        
 			<!-- content ends -->
 			</div><!--/#content.span10-->
@@ -321,14 +318,14 @@
 							
 						</tr>
 
-						<tr style="display:none">
+						<tr>
 							<td>
 								<label>No. of Questions: </label>
 								<input type="text" id="edit_no_of_questions" name="edit_no_of_questions">
 							</td>
 							
 						</tr>
-						<tr style="display:none">
+						<tr>
 							<td>
 								<label>No. of Choices: </label>
 								<select id="edit_no_of_choices" name="edit_no_of_choices">
@@ -431,7 +428,7 @@
 	
 	<script type="text/javascript" charset="utf-8">
 
-		$(".editbutton").click(function() {
+			$(".editbutton").click(function() {
 		        //$('#modalEditSemester').modal('show');
 		        var form_data = {
 		        	dataid: $(this).attr('id'),
@@ -467,6 +464,99 @@
 
 			$("#triggerdelete").click(function() {
 		        window.location.href = "<?php echo base_url();?>index.php/examination/delete_examination/" + deleteid;				    	
+			});
+
+			$(".qArea").change(function() {
+			    
+
+			    //$('#modalEditSemester').modal('show');
+		        var form_data = {
+		        	dataid: $(this).attr('id'),
+		        	value: $(this).val(),
+		        	ajax: '1'
+		        };
+
+		        var request = $.ajax({
+		        	url: "<?php echo base_url();?>index.php/examination/edit_item",
+		        	type: 'POST',
+		        	data: form_data
+		        });
+
+		        request.done(function (response, textStatus, jqXHR){
+			        
+			    });
+			});
+
+
+
+			$(".aArea").change(function(event) {
+
+				/*var i = event.target.id;
+				alert(i);*/
+			    //$('#modalEditSemester').modal('show');
+
+			    var ext = $(this).attr('id');
+			    ext = ext.slice(1);
+			    var a = "#a" + ext;
+			    var b = "#b" + ext;
+			    var c = "#c" + ext;
+			    var d = "#d" + ext;
+			    var e = "#e" + ext;
+			    var f = "#f" + ext;
+			    var g = "#g" + ext;
+			    var h = "#h" + ext;
+			    var i = "#i" + ext;
+			    var j = "#j" + ext;
+			    var values = $(a).val() + "*" +
+		        		$(b).val() + "*" + 
+		        		$(c).val() + "*" + 
+		        		$(d).val() + "*" + 
+		        		$(e).val() + "*" + 
+		        		$(f).val() + "*" + 
+		        		$(g).val() + "*" + 
+		        		$(h).val() + "*" +
+		        		$(i).val() + "*" + 
+		        		$(j).val();
+
+
+		        var form_data = {
+		        	dataid: $(this).attr('id').slice(1),
+		        	value: values,
+		        	ajax: '1'
+		        };
+
+		        var request = $.ajax({
+		        	url: "<?php echo base_url();?>index.php/examination/edit_choices",
+		        	type: 'POST',
+		        	data: form_data
+		        });
+
+		        request.done(function (response, textStatus, jqXHR){
+			        //alert($("#c" + ext).val());
+			        
+					
+			    });
+			});		
+
+			$(".key").change(function() {
+		        
+		        var form_data = {
+		        	dataid: $(this).attr('id'),
+		        	value: $(this).val(),
+		        	ajax: '1'
+		        };
+
+		        var request = $.ajax({
+		        	url: "<?php echo base_url();?>index.php/examination/edit_key",
+		        	type: 'POST',
+		        	data: form_data
+		        });
+
+		        request.done(function (response, textStatus, jqXHR){
+			       	
+		        	
+			    });
+				    	
 			});
 
 	</script>

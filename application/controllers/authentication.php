@@ -34,13 +34,13 @@ class Authentication extends CI_Controller {
 		else {
 
 			
-			if($permission != 'instructor') {
+			/*if($permission != 'instructor' || $permission != 'student') {
 				echo '<a href="' . base_url() . 'index.php/logout">you don\'t belong here</a>';
 			}
-			else {
+			else {*/
 				
 				redirect(base_url());
-			}
+			//}
 		}
 
 	}

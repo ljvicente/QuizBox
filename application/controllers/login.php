@@ -13,9 +13,12 @@ class Login extends CI_Controller {
 		);
 
 		//check kung naka-login
-		if($this->session->userdata('is_logged_in')) {
+		if($this->session->userdata('is_logged_in') && $this->session->userdata('permission') == 'instructor') {
 
 			redirect(base_url() . 'index.php/dashboard');
+		}
+		elseif ($this->session->userdata('is_logged_in') && $this->session->userdata('permission') == 'student') {
+			$this->load->view('reviewer_view', $data);
 		}
 		else {
 
